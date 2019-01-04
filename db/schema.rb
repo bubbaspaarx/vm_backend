@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_01_03_081859) do
   enable_extension "plpgsql"
 
   create_table "machine_cashes", force: :cascade do |t|
-    t.string "quantity"
+    t.integer "quantity"
     t.bigint "machine_id"
     t.bigint "money_id"
     t.datetime "created_at", null: false
