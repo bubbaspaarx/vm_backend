@@ -12,7 +12,8 @@ class Api::V1::MachinesController < ApplicationController
     update_coins(params[:insertedCoins])
     @change = return_change(params[:paid] - params[:total])
     p @change
-    render json: {change: @change, snacks: @snacks}
+    render json: {change: @change, snacks: ActiveModel::Serializer::CollectionSerializer.new(@snacks, each_serializer: SnackSerializer,
+      scope: {params: params[:id]})}
   end
 
   private
