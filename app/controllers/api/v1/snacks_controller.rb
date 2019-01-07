@@ -1,5 +1,5 @@
 class Api::V1::SnacksController < ApplicationController
-  before_action :set_snack, only: [:show]
+  before_action :set_snack, only: [:show, :update]
 
   def index
     render json: Snack.all.order(:id),
@@ -8,6 +8,16 @@ class Api::V1::SnacksController < ApplicationController
   end
 
   def show
+    render json: @snack,
+      each_serializer: SnackSerializer,
+      scope: {params: params[:machine_id]}
+  end
+
+  def update
+    stock = @snack.stocks.find_by(machine_id: params[:machine_id].to_i)
+    p stock
+    stock.quantity = params[:attributes][:quantity]
+    stock.save!
     render json: @snack,
       each_serializer: SnackSerializer,
       scope: {params: params[:machine_id]}

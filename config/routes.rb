@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         resources :snacks, only: [:index, :update, :show]
         resources :stocks, only: [:index, :update]
         resources :sales, only: [:create, :index]
-        resources :money, only: [:index, :show]
+        resources :money, only: [:index, :show, :update]
       end
     end
   end
