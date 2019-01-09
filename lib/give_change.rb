@@ -11,7 +11,7 @@ module GiveChange
           return
         elsif coin > change_due
           counter += 1
-        elsif change_due % coin == 0 && change_due != 0
+        elsif change_due / coin > 0 && change_due != 0
           change_due -= coin
           coin_cash.quantity -= 1
           coin_cash.save
