@@ -8,7 +8,6 @@ module GiveChange
       cash_array.each do |coin_cash|
         coin = coin_cash.money.value
         if change_due == 0 || counter == cash_array.length
-          return
         elsif coin > change_due
           counter += 1
         elsif change_due / coin > 0 && change_due != 0
@@ -17,7 +16,6 @@ module GiveChange
           coin_cash.save
           @all_coins[coin] ? @all_coins[coin] += 1 : @all_coins[coin] = 1
           create_change(change_due) if change_due > 0
-          return
         else
           counter += 1
         end
